@@ -7,7 +7,6 @@ const paragraph = document.querySelector('p')
 const testButton = document.querySelector('#test')
 const testinput = document.querySelector ('#testInput')
 
-const baseURL = 'http://localhost:4000/'
 
 
 
@@ -15,7 +14,7 @@ const submitQuestionFunction = (event) => {
     event.preventDefault()
 
  
-    axios.get(`http://localhost:4000/api/submission/${queryList.value}`)
+    axios.get(`/api/submission/${queryList.value}`)
         .then(response => {
         
             paragraph.innerHTML = response.data[0].response
@@ -58,7 +57,7 @@ const saveAs = (event) => {
         dadresponse: save
     }
 
-    axios.post(`http://localhost:4000/saveJournal`, journalObj)
+    axios.post(`/saveJournal`, journalObj)
     .then(response => {
         console.log(response)
     }).catch(err => console.log(err))
@@ -68,7 +67,7 @@ const saveAs = (event) => {
 
 
 const getJournal = () => {
-    axios.get("http://localhost:4000/api/submission/")
+    axios.get("/api/submission/")
         .then(response => {
             createJournalList(response.data)
         })
@@ -119,7 +118,7 @@ const deleteJournalEntry = (event) => {
 
 
 function getQueries() {
-    axios.get('http://localhost:4000/questions')
+    axios.get('/questions')
         .then(res => {
             res.data
             res.data.forEach(query => {
@@ -137,7 +136,7 @@ function testDadChat (event) {
     let testObj = {
         question: 'Answer this question as if you are a nurturing emtionally intelligent father figure, with clear action steps, and include an light endearing nickname: ' + testinput.value
     }
-    axios.post('http://localhost:4000/testDadChat', testObj)
+    axios.post('/testDadChat', testObj)
     .then((response) => {
 
         // const displayChat = cleanUpDadChat(response.data)
