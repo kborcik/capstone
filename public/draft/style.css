@@ -1,0 +1,92 @@
+body {
+    background-color: #0b2027;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+header{
+    width: 100dw;
+}
+.input-group {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .input-group input[type="text"] {
+    padding-left: 40px;
+  }
+  
+  .input-group .icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .input-group .icon i {
+    font-size: 20px;
+  }
+
+#landingBox {
+    background-color: #F6F1D1;
+    border: #F6F1D1;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 500px;
+    width: 400px;
+    border-radius: 5%;
+}
+
+#slideshow {
+    position: relative;
+    height: 100px; 
+    overflow: hidden;
+  }
+  
+#slideshowText {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+  
+#slideshowText.active {
+    opacity: 1;
+  }
+  
+#askAQuestionBtn {
+    border-radius: 15px;
+    padding: 10px;
+    border-color: #40798C;
+    background-color: #40798C;
+    font-weight: bold;
+    border: 0px;
+}
+
+#loginBtn {
+    border-radius: 15px ;
+    padding: 10px;
+    border-color: #70A9A1;
+    background-color: #70A9A1;
+    font-weight: bold;
+    border: 0px;
+
+}
+
+#input {
+    border-radius:5px;
+    border: 2px;
+    border-color: #0b2027;
+    padding: 10px;
+    width: 300px;
+
+}

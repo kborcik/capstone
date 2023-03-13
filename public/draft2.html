@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="draft.css">
+    <title>Interface</title>
+</head>
+<body>
+    <header>
+        <img src="/foundationsCapstone/images/Hey Dad, Mechanic.png">
+    </header>
+
+    <div id="interface">
+
+        <div id="formContainer">
+            <form>
+                <label for="queryList">Hey day...</label>
+                <select id="queryList"></select>
+                <button id="askDad">Submit</button>
+            </form>
+        </div>
+
+        <div id="underFormContainer">
+
+            <div id="journalContainer">
+                <ul>
+                    
+                </ul>
+            </div>
+            
+            <div id="dadResponseContainer">
+                <p>
+                    
+                </p>
+                <div id="buttonFooter">
+                    <button id="saveResponse">Save Response</button>
+                </div>
+                <form style="position: relative; visibility: hidden;" id="saveJournal">
+                    <input id="saveAs" type="text" placeholder="Title...">
+                    <button style="position: absolute; right: 10px;">Save As</button>
+                </form>
+            </div>
+    
+        </div>
+    </div>
+
+    <form id="test" style="position: relative;">
+        <input id="testInput" type="text" placeholder="Hey dad..." ></input>
+        <button style="position: absolute; right: 10px;" ><img src="/foundationsCapstone/images/speech-bubble-png-speech-bubble-icon-1600.png.crdownload" style="height: 20px;"></button>
+    </form>
+        
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="draft.js"></script>
+</body>
+</html>

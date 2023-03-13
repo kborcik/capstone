@@ -1,0 +1,97 @@
+body {
+    background-color: #0B2027;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+header img {
+    width: 100%;
+}
+
+p {
+    padding: 30px;
+}
+
+form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 300px;
+    width: 200px;
+    margin-top: 20px;
+}
+
+#interface {
+    width: 90%;
+    height: 1000px;
+    background-color: antiquewhite;
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+    align-items: center;
+    padding-bottom: 50px;
+
+
+}
+
+#formContainer{
+    background-color: black;
+    margin: 10px;
+    height: 50px;
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+}
+
+#underFormContainer{
+    background-color: black;
+    margin: 10px;
+    width: 90%;
+    height: 900px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#journalContainer{
+    background-color: red;
+    margin: 10px;
+    height: 95%;
+    width: 25%;
+}
+
+#dadResponseContainer{
+    background-color: aquamarine;
+    margin: 10px;
+    height: 95%px;
+    width: 70%;
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+#buttonFooter{
+    height: 30px;
+    width: 100%;
+    background-color: transparent;
+    display:flex;
+    justify-self:flex-end;
+    justify-content: flex-end;
+}
+form {
+    width: 90%;
+    height: 60px;
+    border: 2px;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+input {
+    width: 100%;
+    height: 70%;
+}
