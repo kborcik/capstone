@@ -4,54 +4,51 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="draft.css">
-    <title>Interface</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap" rel="stylesheet">
+    <title>Hey Dad</title>
 </head>
 <body>
-    <header>
-        <img src="./images/Hey Dad, Mechanic.png">
-    </header>
+    <aside>  
+        <img id="dadImg" src="./images/sidebar, mechanic.png"> 
+        <div  id="journalContainer">
+        </div>    
+    </aside>
+ 
 
-    <div id="interface">
-
-        <div id="formContainer">
-            <form>
-                <label for="queryList">Hey day...</label>
-                <select id="queryList"></select>
-                <button id="askDad">Submit</button>
-            </form>
-        </div>
-
-        <div id="underFormContainer">
-
-            <div id="journalContainer">
-                <ul>
-                    
-                </ul>
-            </div>
-            
-            <div id="dadResponseContainer">
-                <p>
-                    
-                </p>
-                <div id="buttonFooter">
-                    <button id="saveResponse">Save Response</button>
-                </div>
-                <form style="position: relative; visibility: hidden;" id="saveJournal">
-                    <input id="saveAs" type="text" placeholder="Title...">
-                    <button style="position: absolute; right: 10px;">Save As</button>
-                </form>
-            </div>
+    <div id="main">
+        <section id="dadResponseContainer">
+            <p>       
+            </p>
+        </section>
+   
     
-        </div>
-    </div>
 
-    <form id="test" style="position: relative;">
-        <input id="testInput" type="text" placeholder="Hey dad..." ></input>
-        <button style="position: absolute; right: 10px;" ><img src="./images/speech-bubble-png-speech-bubble-icon-1600.png.crdownload" style="height: 20px;"></button>
-    </form>
-        
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <div id="footer">
+
+            <div id="buttonFooter">
+                <button id="saveResponse" style="visibility:hidden;">Save Response</button>
+                <button id="clear" style="visibility: hidden;">Clear</button>
+            </div>
+            <form style="visibility: hidden;" id="saveJournal">
+                <input id="saveAs" type="text" placeholder="Title...">
+                <button id="saveAsBtn">Save As</button>
+                <button id="cancelSave"><img src="./images/delete.png" style="height: 10px; filter: invert(100%);"></img></button>
+            </form>
+            <form id="test">
+                <input id="testInput" type="text" placeholder="Hey dad..." ></input>
+                <button id="chatButton" style="visibility: hidden;" ><img src="./images/speech.jpg" style="height: 15px;"></button>
+            </form>
+
+         </div>
+
+    </div>  
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="draft.js"></script>
 </body>
 </html>

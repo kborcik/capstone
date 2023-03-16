@@ -1,37 +1,21 @@
 const submitQuestion = document.querySelector("form")
 const saveResponse = document.getElementById("saveResponse")
 const saveJournal = document.getElementById('saveJournal')
-const journal = document.querySelector('ul')
+const journal = document.querySelector('#journalContainer')
 const queryList = document.querySelector('#queryList')
 const paragraph = document.querySelector('p')
 const testButton = document.querySelector('#test')
 const testinput = document.querySelector ('#testInput')
+const clear = document.getElementById('clear')
+const cancelSave = document.getElementById('cancelSave')
 
 
 
 
-const submitQuestionFunction = (event) => {
-    event.preventDefault()
 
- 
-    axios.get(`/api/submission/${queryList.value}`)
-        .then(response => {
-        
-            paragraph.innerHTML = response.data[0].response
-            console.log(response.data)
-            console.log(response.data[0].response)
-
-
-    })
-        .catch(err => console.log(err))
-
- queryList.value = ""
-
-
-}
 
 const saveResponseFunction = () => {
-    document.getElementById('saveJournal').style.visibility = 'visible'
+    saveJournal.style.visibility = 'visible'
     saveResponse.style.visibility = 'hidden'
 
     saveJournal.addEventListener('submit', saveAs)
@@ -49,6 +33,7 @@ const saveAs = (event) => {
 
     if (title === ""){
         alert('You need to insert a title')
+        saveResponse.style.visibility="visible"
     }
 
     let journalObj = {
@@ -60,15 +45,20 @@ const saveAs = (event) => {
     axios.post(`/saveJournal`, journalObj)
     .then(response => {
         console.log(response)
+        getJournal()
     }).catch(err => console.log(err))
+
+    saveJournal.style.visibility = 'hidden'
+    
     
 }
 
 
 
 const getJournal = () => {
-    axios.get("/api/submission/")
+    axios.get("/api/journal/")
         .then(response => {
+            console.log(response.data)
             createJournalList(response.data)
         })
         .catch(err => console.log(err))
@@ -79,81 +69,118 @@ const createJournalList = array => {
     array.forEach((response,index) =>{
 
         let {dadresponseid,
-             question,
-             dadchatresponse} = response
-        let dadResponse = document.createElement('li')
+             question} = response
+
+        console.log(response)
+
+        let responseSpan = document.createElement('span')
+        journal.appendChild(responseSpan)
+        responseSpan
+        let savedJournal = document.createElement('button')
 
         let title = question
 
-        let responseSpan = document.createElement('span')
-        responseSpan.textContent = title
+        console.log(question)
+        console.log(dadresponseid)
+        
+        savedJournal.innerText = title
+        savedJournal.id = dadresponseid
+        savedJournal.classList = "journalBtns"
+        
 
         let deleteBtn = document.createElement('button')
-        deleteBtn.textContent = "X"
-        deleteBtn.id = index
-
-     
-
-
-        dadResponse.appendChild(responseSpan)
-        dadResponse.appendChild(deleteBtn)
+        deleteBtn.innerHTML = `<img src="./images/delete.png" style="height: 10px; filter: invert(100%);"></img>`
+        deleteBtn.id = dadresponseid
+        deleteBtn.classList = "deleteBtns"
+        
+        responseSpan.appendChild(savedJournal)
+        responseSpan.appendChild(deleteBtn)
    
 
         deleteBtn.addEventListener('click', deleteJournalEntry)
+        savedJournal.addEventListener('click', displayJournalEntry)
 
 
-        journal.appendChild(dadResponse)
+      
     })
 
 }
 
-const deleteJournalEntry = (event) => {
+const displayJournalEntry = async(event) => {
+    paragraph.innerHTML = ""
+    let journalEntry = event.target.id
+    await axios.get(`/api/journal/${journalEntry}`)
+    .then(res => {
+        console.log(res.data)
+        let display = (res.data.dadchatresponse)
 
-    axios.delete(baseURL+event.target.id)
-        .then(response => {
-            createJournalList(response.data)
-        })
-        .catch(err => console.log(err))
-}
-
-
-function getQueries() {
-    axios.get('/questions')
-        .then(res => {
-            res.data
-            res.data.forEach(query => {
-                const option = document.createElement('option')
-                option.setAttribute('value', query['responseid'])
-                option.textContent = query.question
-                queryList.appendChild(option)
-            })
-        })
-}
-
-function testDadChat (event) {
-    event.preventDefault()
-
-    let testObj = {
-        question: 'Answer this question as if you are a nurturing emtionally intelligent father figure, with clear action steps, and include an light endearing nickname: ' + testinput.value
-    }
-    axios.post('/testDadChat', testObj)
-    .then((response) => {
-
-        // const displayChat = cleanUpDadChat(response.data)
-        console.log(response.data)
-        // console.log(displayChat);
-
-        paragraph.innerText += response.data + '\n\n'
+        paragraph.innerText = display
+        
     }).catch(err => console.log(err))
 
+    clear.style.visibility = "visible"
+
+    
 }
 
-const cleanUpDadChat = (string) => {
+const deleteJournalEntry = (event) => {
+
+    console.log(event.target.id);
+
+    axios.delete('/api/journal/' + event.target.id)
+        .then(response => {
+
+            console.log(response.data)
+            getJournal(response.data)
+        })
+        .catch(err => console.log(err))
+
+        getJournal()
+}
+
+
+const testDadChat = async(event) => {
+    event.preventDefault()
+
+
+    let testObject = {
+        "role": "user", "content": testinput.value     
+    }
+    await axios.post('/testDadChat', testObject)
+    .then((response) => {
+
+        let question = document.createElement('h1')
+        question.innerText= "You: " + testinput.value + "\n\n"
+        paragraph.appendChild(question)
+
+        console.log(response.data)
+        
+        paragraph.innerText += "Dad: " + response.data + '\n\n'
+
+        testinput.value= ""
+    }).catch(err => console.log(err))
+
+    saveResponse.style.visibility = "visible"
+    clear.style.visibility = "visible"
+
+}
+
+const clearChat = () => {
+    paragraph.innerText = ""
+
+    axios.get('/clear')
+
+    clear.style.visibility = "hidden"
+    saveResponse.style.visibility = "hidden"
+
     
-    const step1 = string.replace(/\n/g, "<br>");
-    const step2 = step1.replace(/\+/g, "");
-    return step2;
-  }
+
+}
+
+const cancelSaveFunction = () => {
+    saveResponse.style.visibility = "visible"
+    saveAs.Style.visibility = "hidden"
+}
   
 
 
@@ -163,10 +190,8 @@ const cleanUpDadChat = (string) => {
 
 getJournal()
 
-getQueries()
-
-submitQuestion.addEventListener('submit', submitQuestionFunction )
 testButton.addEventListener('submit', testDadChat)
-
+clear.addEventListener('click', clearChat)
 saveResponse.addEventListener('click', saveResponseFunction)
+cancelSave.addEventListener('click',cancelSaveFunction)
 

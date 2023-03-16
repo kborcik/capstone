@@ -11,23 +11,25 @@ app.use(express.static('public'))
 app.use(express.json());
 
 const { submitQuestionFunction,
-        getQueries,
         deleteJournalEntry,
         getJournal,
         testDadChat,
-        saveAs } = require('./controller')
+        saveAs,
+        displayJournalEntry,
+        clearChat } = require('./controller')
  
 app.get('/', (req,res) => {
     res.status(200).sendFile(path.join(__dirname, '../public/draft2.html'))
 })
-app.get('/questions',getQueries)
-app.get("/api/submission/:input",submitQuestionFunction);
-app.delete('/:index', deleteJournalEntry);
-app.get('/api/submission/',getJournal);
+
+app.delete('/api/journal/:index', deleteJournalEntry);
+app.get('/api/journal/', getJournal);
+app.get('/api/journal/:index', displayJournalEntry);
 
 app.post('/testDadChat', testDadChat);
 app.post('/saveJournal', saveAs);
 
+app.get('/clear', clearChat);
 
 
 app.listen(4000, () => console.log("Server running on 4000"));

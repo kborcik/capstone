@@ -1,97 +1,187 @@
 body {
     background-color: #0B2027;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    font-family: 'Inter', sans-serif;
 }
 
-header img {
-    width: 100%;
+
+button{
+    background-color: #0B2027;
+    border: 0px;
+    border-radius: 8px;
+    color:antiquewhite;
 }
 
-p {
-    padding: 30px;
+button:hover{
+    cursor: pointer;
 }
 
-form {
+aside {
+    background-color:#0B2027;
+    height: 100vh;
+    width: 300px;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+#dadImg{
+    width: 300px;
     height: 300px;
-    width: 200px;
-    margin-top: 20px;
-}
 
-#interface {
-    width: 90%;
-    height: 1000px;
-    background-color: antiquewhite;
-    display: flex;
-    flex-direction: column;
-    margin-top: 15px;
-    align-items: center;
-    padding-bottom: 50px;
-
-
-}
-
-#formContainer{
-    background-color: black;
-    margin: 10px;
-    height: 50px;
-    width: 70%;
-    display: flex;
-    align-items: center;
-    justify-items: center;
-}
-
-#underFormContainer{
-    background-color: black;
-    margin: 10px;
-    width: 90%;
-    height: 900px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
 }
 
 #journalContainer{
-    background-color: red;
-    margin: 10px;
-    height: 95%;
-    width: 25%;
+    background-color:#0B2027;
+    min-height: calc(100vh - 300px);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: scroll;
+    padding-top: 10px;
+    gap:10px;
+    box-sizing: border-box;
 }
 
-#dadResponseContainer{
-    background-color: aquamarine;
-    margin: 10px;
-    height: 95%px;
-    width: 70%;
+
+
+span {
     display:flex;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 25px;
+}
+
+.journalBtns {
+    width: 220px;
+    height: 25px;
+    color:white;
+    background-color:#040D10;
+    border-radius: 8px;
+    border: 0px;
+    text-align: left;
+
+}
+
+.journalBtns:hover {
+    cursor: pointer;
+    background-color: #53687E;
+}
+
+.deleteBtns {
+    width: 25px;
+    height: 25px;
+    border-radius: 100%;
+    background-color: #040D10;
+    border: 0px;
+}
+
+.deleteBtns:hover{
+    background-color: #8D3F41;
+}
+
+#main {
+    height: 100vh;
+    width: calc(100vw - 300px);
+    display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+}
+
+
+
+p {
+    padding: 100px;
+}
+
+
+
+
+#dadResponseContainer{
+    background-color: rgb(246, 241, 209);
+    min-height: calc(100vh - 130px);
+    overflow-y: scroll;
+}
+
+#footer{
+    background-color: rgb(207, 215, 199);
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    border-top: 10px solid rgba(246,241,209,.5);
+    gap: 5px; 
+    
 }
 
 #buttonFooter{
     height: 30px;
     width: 100%;
-    background-color: transparent;
     display:flex;
-    justify-self:flex-end;
-    justify-content: flex-end;
-}
-form {
-    width: 90%;
-    height: 60px;
-    border: 2px;
-    border-radius: 7px;
-    display: flex;
     align-items: center;
+    justify-content: flex-end;
+    box-sizing: border-box;
+    gap: 10px;
+    padding-right: 20px;
+}
+#test {
+    width: 100%;
+    height: 100px;
+    padding-left: 50px;
+    box-sizing: border-box;
+    display: flex;
     justify-content: center;
+    gap: 5px;
+ 
 }
 
-input {
+#chatButton {
+    padding: 0px;
+    height: 25px;
+    width: 25px;
+    
+}
+
+#testInput{
+    width: 60%;
+    height: 20px;
+}
+
+#saveJournal{
     width: 100%;
-    height: 70%;
+    padding-left: 50px;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 20px;
+    box-sizing: border-box;
+    gap: 3px;
+}
+
+#saveAs{
+    margin-right: 20px;
+}
+#saveAsBtn:hover{
+    background-color: #53687E;
+}
+
+#cancelSave:hover{
+    background-color: #8D3F41;
+}
+
+#clear{
+    height: 20px;
+}
+
+#saveResponse{
+    height: 20px;
+}
+
+#clear:hover{
+    background-color:  #8D3F41;
+}
+
+#saveResponse:hover{
+    background-color: #53687E;
 }
